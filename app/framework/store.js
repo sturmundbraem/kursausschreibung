@@ -196,7 +196,8 @@ function addLessonsToEvents(lessons) {
 
     if (codeIds.find(ids => ids === code.CodeId) === undefined) {
       codeIds.push(code.CodeId);
-      filterCodes.push({id: code.CodeId, Code: getString(prefix+code.CodeId) }); 
+      let codeName = getString(prefix+code.CodeId).indexOf('<span style="color:red;">Key not found:') >= 0 ? code.Code : getString(prefix+code.CodeId);
+      filterCodes.push({id: code.CodeId, Code: codeName }); 
     }  
 
   });
@@ -302,6 +303,14 @@ function prepareEvent(event) {
 
   // create proxy for human-readable values
   addDisplayData(event);
+
+  //settings subscriptionWithLoginURL
+  event.subscriptionWithLoginURL = settings.subscriptionWithLoginURL;
+
+  //event subtitle when > inside string
+  let eventSubtitle = event.Designation.split(settings.eventSubtitle);
+  event.Designation = eventSubtitle.length > 1  ? eventSubtitle[0] : event.Designation;
+  event.subtitle = eventSubtitle.length > 1 ? eventSubtitle[1] : null;
 
   // create an ember-object of the event
   event = createEmberObject(event);
@@ -438,6 +447,9 @@ function addPropertiesToEvent(event) {
   event.From = combineDate(event.DateFrom, event.TimeFrom);
   event.To = combineDate(event.DateTo, event.TimeTo);
 
+  event.SubscriptionDateFrom = event.SubscriptionDateFromIsNull ? null : event.SubscriptionDateFrom;
+  event.SubscriptionDateTo = event.SubscriptionDateToIsNull ? null : event.SubscriptionDateTo;
+
   // add event.Time
   if (typeof event.TimeFrom === 'string' && typeof event.TimeTo === 'string') {
     event.Time = `${removeMinutes(event.TimeFrom)} - ${removeMinutes(event.TimeTo)}`;
@@ -462,7 +474,9 @@ function fillEmptyDates(event) {
   now.setDate(now.getDate() + 7);
   let dateNow = format(now, 'yyyy-MM-dd');
 
+  event.SubscriptionDateFromIsNull = event.SubscriptionDateFrom === null ? true : false;
   event.SubscriptionDateFrom = event.SubscriptionDateFrom || datePast;
+  event.SubscriptionDateToIsNull = event.SubscriptionDateTo === null ? true : false;
   event.SubscriptionDateTo = event.SubscriptionDateTo || dateNow;
   event.DateFrom = event.DateFrom || event.DateTo || dateNow;
   event.DateTo = event.DateTo || event.DateFrom || dateNow;

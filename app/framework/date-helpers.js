@@ -85,9 +85,7 @@ export function eventStarted(event) {
  */
 export function eventEnded(event) {
   let now = new Date();
-  let dateTo = event.DateTo;
-  let repalcePattern = '00:00:00';
-  if (dateTo === null) {
+  if (event.DateTo === null) {
     return false;
   }
 

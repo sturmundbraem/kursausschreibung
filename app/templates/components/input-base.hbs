@@ -1,9 +1,9 @@
 {{#if this.field.isLegend}}
   <legend class="uk-legend uk-margin">{{{this.field.label}}}</legend>
 {{else}}
-  <div id="hidden{{this.field.id}}" class="uk-margin uk-display-inline-block uk-width-1-1 {{this.field.options.hidden}}">
-    <label class="uk-form-label" for={{this.field.id}}
-      data-uk-tooltip={{this.field.options.tooltip}}>{{{this.field.label}}}</label>
+  <div id="hidden{{field.id}}" class="uk-margin uk-display-inline-block uk-width-1-1 {{field.options.hidden}} inputtype-{{field.dataType}}">
+    <label class="uk-form-label" for={{field.id}}
+      data-uk-tooltip={{field.options.tooltip}}>{{{field.label}}}</label>
     <div class="uk-form-controls">
       {{#if this.field.options.tooltip}}
       <label class="uk-margin uk-display-inline-block uk-text-meta">{{this.field.options.tooltip}}</label>

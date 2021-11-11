@@ -103,7 +103,19 @@ If you want to be sure that after authentication by the module the correct addre
 
 This is a fork for bff with the following custom additions
 
-- eventEnded in date-helpers.js returns false for events without end date (event is still ongoing)
+- eventEnded in date-helpers.js returns false for events without end date (PR sent)
 - inputs have a class indicating the input type for better styling (checkboxes)
 - Bumped softwareversion in package.json to 3.3.0 (PR accepted)
-- 
+
+## Workflow
+
+We use the following workflow to maintain our codebase and get updates from upstream.
+
+Our `develop` follows upstream/develop.
+Our `master` follows upstream/master.
+
+There is a branch called `upstream` which follows upstream/develop. We cherrypick commits into this branch to create pullrequests to upstream.
+
+TBD: 
+- How to we manage our Releases (from which branch, master perhaps?)
+- How do we tag our own Releases while still keeping a Reference to the upstream base version?

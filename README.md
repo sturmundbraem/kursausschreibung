@@ -75,3 +75,12 @@ You can download releases on the [releases page](https://github.com/bkd-mba-fbi/
 For the integration into an html page you need a simple html configuration in header and body of the page in which you want to publish the module. Please see section `MODULE head configuration` and `MODULE MAIN APPLICATION` in `index.html`.
 
 If you want to be sure that after authentication by the module the correct address is always used use `OPTION REDIRECT` in the `index.html` [GoTo](https://github.com/bkd-mba-fbi/kursausschreibung/blob/master/app/index.html). Please put script element between head and body of main page (load faster).
+
+# STUBR FORK
+
+This is a fork for bff with the following custom additions
+
+- eventEnded in date-helpers.js returns false for events without end date (event is still ongoing)
+- inputs have a class indicating the input type for better styling (checkboxes)
+- Bumped softwareversion in package.json to 3.3.0 (PR accepted)
+- 

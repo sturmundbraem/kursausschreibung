@@ -82,6 +82,9 @@ This is a fork for bff with the following custom additions
 
 - eventEnded in date-helpers.js returns false for events without end date (PR sent)
 - inputs have a class indicating the input type for better styling (checkboxes)
+
+## Archive
+These changes have had a PR which was accepted and are now in upstream
 - Bumped softwareversion in package.json to 3.3.0 (PR accepted)
 
 ## Workflow

@@ -1,4 +1,4 @@
-# kursausschreibung 3.3.1
+# kursausschreibung 3.3.2
 [![Build 🏭🚀](https://github.com/bkd-mba-fbi/kursausschreibung/actions/workflows/buildDeploy.yml/badge.svg)](https://github.com/bkd-mba-fbi/kursausschreibung/actions/workflows/buildDeploy.yml)
 ## Prerequisites
 
@@ -96,6 +96,27 @@ Our `master` follows upstream/master.
 
 There is a branch called `upstream` which follows upstream/develop. We cherrypick commits into this branch to create pullrequests to upstream.
 
-TBD: 
-- How to we manage our Releases (from which branch, master perhaps?)
-- How do we tag our own Releases while still keeping a Reference to the upstream base version?
+For example we made a correction `f4d27e04b` in our develop branch. We want to give this commit back to upstream.
+
+For that we change into our `upstream` branch, cherry pick our commit `git cherry-pick f4d27e04b` and create a pull-request.
+Now they can decide whether they want the change or not.
+
+## Ember / Build
+
+Our build process is the same as the normal build process:
+
+* `ember build` (development)
+* `ember build --environment production` (production)
+
+We then copy the created files into the bff-web repository for testing/production
+
+## Releases / Tags
+
+If we have a version which we want to release, we create a new tag after building the version.
+We have a very simple version numbering scheme: VERSION_UPSTREAMVERSION
+For example `1_3.3.1`
+
+Example:
+`git tag -a v1_3.3.1 -m "STUBR Version 1, ref upstream v3.3.1"`
+Push your newly created tag to origin
+`git push origin --tags`

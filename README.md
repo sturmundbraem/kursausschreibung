@@ -123,6 +123,8 @@ We use the following workflow to maintain our codebase and get updates from upst
 Our `develop` follows upstream/develop.
 Our `master` follows upstream/master.
 
+### We make for upstream
+
 There is a branch called `upstream` which follows upstream/develop. We cherrypick commits into this branch to create pullrequests to upstream.
 
 For example we made a correction `f4d27e04b` in our develop branch. We want to give this commit back to upstream.
@@ -130,12 +132,19 @@ For example we made a correction `f4d27e04b` in our develop branch. We want to g
 For that we change into our `upstream` branch, cherry pick our commit `git cherry-pick f4d27e04b` and create a pull-request.
 Now they can decide whether they want the change or not.
 
+### We want to integrate a change from upstream
+
+If there are new changes/releases upstream which we want to integrate, we fetch upstream in github on `master` and/or `develop`.
+We then use the below described Build process to create our own version including the upstream changes.
+
 ## Ember / Build
 
 Our build process is the same as the normal build process:
 
-* `ember build` (development)
-* `ember build --environment production` (production)
+* `nvm use && ember build` (development)
+* `nvm use && ember build --environment production` (production)
+
+(The `nvm use` part ensures, that the correct node version is used, which is written in `.nvmrc`)
 
 We then copy the created files into the bff-web repository for testing/production.
 

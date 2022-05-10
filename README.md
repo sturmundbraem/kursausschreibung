@@ -117,7 +117,7 @@ Our build process is the same as the normal build process:
 
 (The `nvm use` part ensures, that the correct node version is used, which is written in `.nvmrc`)
 
-We then copy the created files into the bff-web repository for testing/production
+We then copy the created files (contents of folder `dist`) into the bff-web repository for testing/production
 
 ## Releases / Tags
 

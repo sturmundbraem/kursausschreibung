@@ -131,7 +131,9 @@ Our build process is the same as the normal build process:
 * `ember build` (development)
 * `ember build --environment production` (production)
 
-We then copy the created files into the bff-web repository for testing/production
+We then copy the created files into the bff-web repository for testing/production.
+
+kursausschreibung-stubr:`dist/assets/*` to bffrepo:`packages/sitepackage/Resources/Public/Evento/{test|production}/assets`
 
 ## Merging Upstream
 

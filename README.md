@@ -140,7 +140,19 @@ Our build process is the same as the normal build process:
 
 (The `nvm use` part ensures, that the correct node version is used, which is written in `.nvmrc`)
 
-We then copy the created files (contents of folder `dist`) into the bff-web repository for testing/production
+We then copy the created files (contents of folder `dist`) into the bff-web repository for testing/production.
+
+kursausschreibung-stubr:`dist/assets/*` to bffrepo:`packages/sitepackage/Resources/Public/Evento/{test|production}/assets`
+
+## Merging Upstream
+
+Before we build a new release we want to merge all changes from upstream.
+
+* `git fetch upstream`
+* `git merge upstream/develop` for develop
+* `git merge upstream/master` for master
+
+Resolve conflicts if existing and commit.
 
 ## Releases / Tags
 

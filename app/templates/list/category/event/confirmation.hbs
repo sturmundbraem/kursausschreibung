@@ -18,8 +18,8 @@
     </span>
   </li>
 </ol>
-<h2>
-  {{#if this.model.statusIsRed}}
+<h2 data-eventid="{{ model.eventId }}" data-subscription="success">
+  {{#if model.statusIsRed}}
     {{translate "thankYouWaitingList"}}
   {{else}}
     {{translate "thankYou"}}

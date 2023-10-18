@@ -23,7 +23,7 @@ export default class confirmation extends Route {
     let {
       personId, useCompanyAddress, addressData, companyAddressData,
       subscriptionData, additionalPeople, tableData, subscriptionFiles
-    } = dataToSubmit;  
+    } = dataToSubmit;
 
     // make sure the session is still active
     return autoCheckForLogin().then(() => {
@@ -63,7 +63,7 @@ export default class confirmation extends Route {
           }
           return postSubscription(subscriptionData).then(id => {
             subscriptionFiles.forEach(file => {
-              
+
               let data = {
                 SubscriptionDetail:  {
                     SubscriptionId: id,
@@ -78,13 +78,13 @@ export default class confirmation extends Route {
             });
           });
         });
-      
+
       });
-      
+
       return Promise.all(promises);
-    
+
     }).then(() => {
-      return { tableData: tableData, statusIsRed: event.get('status') === 'red' };
+      return { tableData: tableData, eventId: event.Id, statusIsRed: event.get('status') === 'red' };
 
     }).catch(error => {
 

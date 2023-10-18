@@ -21,7 +21,7 @@ export default Route.extend({
     let {
       personId, useCompanyAddress, addressData, companyAddressData,
       subscriptionData, additionalPeople, tableData, subscriptionFiles
-    } = dataToSubmit;  
+    } = dataToSubmit;
 
     // make sure the session is still active
     return autoCheckForLogin().then(() => {
@@ -61,7 +61,7 @@ export default Route.extend({
           }
           return postSubscription(subscriptionData).then(id => {
             subscriptionFiles.forEach(file => {
-              
+
               let data = {
                 SubscriptionDetail:  {
                     SubscriptionId: id,
@@ -76,13 +76,13 @@ export default Route.extend({
             });
           });
         });
-      
+
       });
-      
+
       return Promise.all(promises);
-    
+
     }).then(() => {
-      return { tableData: tableData, statusIsRed: event.get('status') === 'red' };
+      return { tableData: tableData, eventId: event.Id, statusIsRed: event.get('status') === 'red' };
 
     }).catch(error => {
 

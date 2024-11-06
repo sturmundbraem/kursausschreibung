@@ -1,8 +1,8 @@
-# kursausschreibung 3.4.0
+# kursausschreibung 3.5.2
 [![Build 🏭🚀](https://github.com/bkd-mba-fbi/kursausschreibung/actions/workflows/buildDeploy.yml/badge.svg)](https://github.com/bkd-mba-fbi/kursausschreibung/actions/workflows/buildDeploy.yml)
 
 # Documentation
-Go to the [Wiki](https://github.com/bkd-mba-fbi/kursausschreibung/wiki)
+Go to the [FBI GitBook docs](https://fbi-mba-bkd.gitbook.io/github-docs-public)
 
 # How to implement in your page?
 
@@ -70,8 +70,8 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Linting
 
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
+* `npm run lint`
+* `npm run lint:fix`
 
 ### Building
 
@@ -101,7 +101,7 @@ You can download releases on the [releases page](https://github.com/bkd-mba-fbi/
 
 ## Integration
 
-For the integration into an html page get a build (kursausschreibung.zip) and then you need a simple html configuration in header and body of the page in which you want to publish the module. Please see section `MODULE head configuration` and `MODULE MAIN APPLICATION` in `index.html`.
+For the integration into an html page you need a simple html configuration in header and body of the page in which you want to publish the module. Please see section `MODULE head configuration` and `MODULE MAIN APPLICATION` in `index.html`.
 
 If you want to be sure that after authentication by the module the correct address is always used use `OPTION REDIRECT` in the `index.html` [GoTo](https://github.com/bkd-mba-fbi/kursausschreibung/blob/master/app/index.html). Please put script element between head and body of main page (load faster).
 

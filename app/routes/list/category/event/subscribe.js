@@ -18,7 +18,7 @@ function loadDropdownItems(fields) {
       .filter(item => item.dataType === 'dropdown')
       .map(item => getDropDownItems(item.options.dropdownItems)
         .then(options => {
-
+          
           if(item.id === 'Nationality') {
             options.forEach(element => {
               element.Value = element.Value.split(':')[1].trim();
@@ -26,7 +26,10 @@ function loadDropdownItems(fields) {
             let setDefaultLand = options;
             let defaultLand = options.findIndex(nationality => nationality.Key === 2008100);
             setDefaultLand.splice(0,0,options[defaultLand]);
-          }           
+          }  
+          if (item.id === 'Profession') {
+            item.dataType = 'freeform-dropdown'
+          }         
 
           if (item.options.options === undefined)
             item.options.options = options;
@@ -39,9 +42,9 @@ let dataTypeMappings = {
   ShortText: 'string',
   Text: 'textarea',
   Int: 'number',
-  YesNo: 'checkbox',
   Currency: 'number',
-  Date: 'date'
+  Date: 'date',
+  Yes: 'checkbox'
 };
 
 let fileTypeMapping = {
@@ -72,6 +75,23 @@ function getSubscriptionDetailFields(subscriptionDetails) {
 
     if ( detail.VssStyle === 'DA' || detail.VssStyle === 'PD' || detail.VssStyle === 'PF' ){
       dataType = 'file';
+    }
+
+    if (detail.VssType === 'YesNo'){
+      dataType = 'dropdown';
+      detail.ShowAsRadioButtons = true;
+      let yes = {
+        Key: "Ja",
+        Value: getString('yes')
+      };
+      let no = {
+        Key: "Nein",
+        Value: getString('no')
+      };
+      let items = [];
+      items.push(yes);
+      items.push(no);
+      detail.DropdownItems = items;
     }
 
     return {
@@ -105,6 +125,7 @@ function addSubscriptionDetailDependencies(subscriptionDetailDependencies,subscr
     
         if (dependency.IdVss === item.id){
           item.options.hidden = 'uk-hidden';
+          dependency.required = item.options.required
           item.options.required = false;
         }
         if (dependency.IdVssInfluencer === item.id) {
@@ -158,11 +179,10 @@ export default Route.extend({
     let model = this.modelFor('list.category.event');
 
     if (model.externalSubscriptionURL !== null) {
-      this.replaceWith('list.category.event.index');
+      transition.abort();
     }
 
     if (model.get('canDoSubscription') === false) {
-      this.replaceWith('list.category.event');
       transition.abort();
       return;
     }
@@ -174,17 +194,19 @@ export default Route.extend({
 
         // check if multiple people are allowed to subscribe at the same time
         let allowMultiplePeople = false;
-        subscriptionDetails = subscriptionDetails.filter(function (subscriptionDetail) {
-          if (subscriptionDetail.VssId === SUBSCRIPTION_DETAIL_ALLOW_MULTIPLE_PEOPLE) {
-            allowMultiplePeople = true;
-            return false;
-          }
-          return true;
-        });
-        set(model, 'allowMultiplePeople', allowMultiplePeople);
+        if(subscriptionDetails !== null) {
+          subscriptionDetails = subscriptionDetails.filter(function (subscriptionDetail) {
+            if (subscriptionDetail.VssId === SUBSCRIPTION_DETAIL_ALLOW_MULTIPLE_PEOPLE) {
+              allowMultiplePeople = true;
+              return false;
+            }
+            return true;
+          });
+          //VssInternet = H (Hidden) don't display
+          subscriptionDetails = subscriptionDetails.filter(det => det.VssInternet !== 'H');
+        }
 
-        //VssInternet = H (Hidden) don't display
-        subscriptionDetails = subscriptionDetails.filter(det => det.VssInternet !== 'H');
+        set(model, 'allowMultiplePeople', allowMultiplePeople);
 
         // if userSettings.IdPerson is not 0 we can use it for the subscription
         userSettings.isLoggedIn = userSettings.IdPerson !== 0;

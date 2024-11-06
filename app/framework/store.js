@@ -22,7 +22,7 @@ export function isInitialized() {
 }
 
 // group events by areaOfEducation, EventCategory and Id
-let eventsByArea = { areas: {}, areaKeys: [] };
+let eventsByArea = { areas: {}, areaKeys: [], moreOneAreaKeys: true };
 let eventsById = [];
 
 /**
@@ -92,6 +92,7 @@ export function init() {
 
     // sort areaKeys
     eventsByArea.areaKeys = Object.keys(eventsByArea.areas).sort();
+    eventsByArea.moreOneAreaKeys = eventsByArea.areaKeys.length === 1 && settings.eventCategoryDropdown === false ? false : true;
 
     // sort categoryKeys
     eventsByArea.areaKeys.forEach(area =>
@@ -319,7 +320,7 @@ function prepareEvent(event) {
   addDisplayData(event);
 
   //settings subscriptionWithLoginURL
-  event.subscriptionWithLoginURL = settings.subscriptionWithLoginURL;
+  event.subscriptionWithLoginURL = settings.subscriptionWithLoginURL === null ? null : encodeURI(settings.subscriptionWithLoginURL+'/'+event.EventCategory+'/'+event.Id+'/subscribe');
 
   //event subtitle when > inside string
   let eventSubtitle = event.Designation.split(settings.eventSubtitle);
@@ -456,10 +457,10 @@ function addPropertiesToEvent(event) {
   fillEmptyDates(event);
 
   // combine date and time
-  event.SubscriptionFrom = combineDate(event.SubscriptionDateFrom, event.SubscriptionTimeFrom);
-  event.SubscriptionTo = combineDate(event.SubscriptionDateTo, event.SubscriptionTimeTo);
-  event.From = combineDate(event.DateFrom, event.TimeFrom);
-  event.To = combineDate(event.DateTo, event.TimeTo);
+  event.SubscriptionFrom = event.SubscriptionDateFrom === null ? null : combineDate(event.SubscriptionDateFrom, event.SubscriptionTimeFrom);
+  event.SubscriptionTo = event.SubscriptionDateTo === null ? null : combineDate(event.SubscriptionDateTo, event.SubscriptionTimeTo);
+  event.From = event.DateFrom === null ? null : combineDate(event.DateFrom, event.TimeFrom);
+  event.To = event.DateTo === null ? null : combineDate(event.DateTo, event.TimeTo);
 
   event.SubscriptionDateFrom = event.SubscriptionDateFromIsNull ? null : event.SubscriptionDateFrom;
   event.SubscriptionDateTo = event.SubscriptionDateToIsNull ? null : event.SubscriptionDateTo;
@@ -492,8 +493,6 @@ function fillEmptyDates(event) {
   event.SubscriptionDateFrom = event.SubscriptionDateFrom || datePast;
   event.SubscriptionDateToIsNull = event.SubscriptionDateTo === null ? true : false;
   event.SubscriptionDateTo = event.SubscriptionDateTo || dateNow;
-  event.DateFrom = event.DateFrom || event.DateTo || dateNow;
-  event.DateTo = event.DateTo || event.DateFrom || dateNow;
   event.SubscriptionTimeFrom = event.SubscriptionTimeFrom || '00:00:01';
   event.SubscriptionTimeTo = event.SubscriptionTimeTo || '23:59:59';
 

@@ -20,6 +20,7 @@ export function displayAsGrid(bool) {
     var list = document.getElementById('list-cards');
     var btGrid = document.getElementById('bt-grid');
     var btList = document.getElementById('bt-list');
+    var bool = (String(bool).toLowerCase() === 'true');
 
     if (typeof bool === "boolean") {
       setListViewGrid(bool);
@@ -27,7 +28,7 @@ export function displayAsGrid(bool) {
       setListViewGrid(false);
     }
     
-    if(bool) {
+    if(bool === true) {
       list.classList.add('uk-grid');
       list.classList.add('uk-grid-match');
       list.classList.add('uk-grid-stack'); 
@@ -51,7 +52,7 @@ export function displayAsGrid(bool) {
     }
     for (const child of list.children) {
 
-      if(bool) {
+      if(bool === true) {
         child.classList.add('uk-card');
         child.classList.add('uk-card-body');
         child.classList.add('card-list');

@@ -5,6 +5,8 @@ import { setParameterByName, getParameterByName } from 'kursausschreibung/framew
 import { sortAs } from '../framework/gui-helpers';
 import { getSortAs } from '../framework/storage';
 import settings from '../framework/settings';
+import { getString } from '../framework/translate';
+import { htmlSafe } from '@ember/string';
 
 // tests if a query matches a value
 function match(value, query) {
@@ -27,17 +29,20 @@ export default Component.extend({
   }),
    
   willRender() {
-    this.send('queryChanged');
-
-    let sortOptions = [];
+    //only on first page. filter eventcode
+    if  (this.get('parentView').page === 1){
+      this.send('queryChanged');
+    }
+    
+    let options = '';
     if(settings.sortOptions === undefined) {
-      sortOptions.push({key:'error', value:'configure key sortoptions array in settings'});
+      options = '<option value=error>configure key sortoptions array in settings</option>';
     } else {
       settings.sortOptions.forEach(option => {
-        sortOptions.push({key:option, value:"sort"+option});
+        options = options + '<option value='+option+'>'+getString("sort"+option)+'</option>';
       }); 
     }
-    this.set('sortOptions',sortOptions);
+    this.set('sortOptions',htmlSafe(options));
   }, 
 
   didRender() {
@@ -47,7 +52,9 @@ export default Component.extend({
   filteredEvents: oneWay('events'),
 
   keyUp(){
+    this.set('query',document.getElementById('searchEvents').value)
     setParameterByName('search',this.get('query'));
+    this.send('queryChanged');
   },
 
   actions: {

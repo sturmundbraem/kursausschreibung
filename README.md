@@ -45,7 +45,7 @@ You will need the following things properly installed on your computer.
 * `cd ../../` go back to root directory
 * `npm install -g ember-cli` (if not already installed on your system)
 * `npm install -g n`
-* `npm n 14.15` (newer versions of node cannot compile code)
+* `npm n 18.18` (newer versions of node cannot compile code)
 
 ### Problem npm install
 For one reason or another, some people can't connect to the registry via HTTPS. This can be fixed by setting the registry to use HTTP instead:

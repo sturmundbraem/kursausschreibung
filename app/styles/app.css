@@ -93,12 +93,6 @@
   vertical-align: top;
 }
 
-/* form */
-.uk-scope input:invalid,
-.required {
-  border-color: red !important;
-}
-
 .uk-scope input[type="date"]::-webkit-inner-spin-button {
   display: none; /* this doesn't display correctly in chrome+uikit so we hide it */
 }
@@ -147,7 +141,7 @@
 
 /* mobile */
 @media (max-width: 959px) {
- 
+
   .uk-scope ol.steps {
     font-size: 14px;
   }
@@ -172,7 +166,7 @@
   }
   .uk-scope #subscriptionWithLoginURL{
     margin-top: 10px;
-    margin-left: 0px;  
+    margin-left: 0px;
   }
 
 }

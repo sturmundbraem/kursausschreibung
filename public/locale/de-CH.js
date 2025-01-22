@@ -45,7 +45,7 @@ window.kursausschreibung.locale["de-CH"] = {
   "subscriptionFilesUploadFailed": " Die Anmeldung war erfolgreich. Es konnten jedoch nicht alle Dateien übermittelt werden. Bitte melden Sie sich beim Veranstalter.",
   "noEvents": "Es ist momentan keine Veranstaltung ausgeschrieben.",
   "FilterTagAllEvents": "Alle",
-  "FilterTag1018": "Code Filter Überschreiben (FilterTag1018)", // example overwrite codes filter 
+  "FilterTag1018": "Code Filter Überschreiben (FilterTag1018)", // example overwrite codes filter
   "notAvailable": "nicht verfügbar",
   "useLogin": "Bitte klicken Sie auf die Schaltfläche «Anmelden», um Ihre Anmeldung zu bestätigen und abzuschliessen.",
   "backToSubscripton": "Zurück zum Anmeldeformular",
@@ -69,10 +69,10 @@ window.kursausschreibung.locale["de-CH"] = {
   "leadership": "Leitung",
   "dateString": "Datum",
   "number": "Nummer",
-  "duration": "Dauer", 
+  "duration": "Dauer",
   "time": "Zeit",
   "weekday": "Wochentag",
-  
+
   // translations for the form
   "formFormOfAddress": "Anrede",
   "formFirstName": "Vorname",
@@ -95,7 +95,7 @@ window.kursausschreibung.locale["de-CH"] = {
   "formAddressLine1Placeholder": "Musterstrasse 99",
   "formZipPlaceholder": "3000",
   "formLocationPlaceholder": "Bern",
-  "formOptionEmpty": "-- Leer --",
+  "formOptionEmpty": "",
   "formPhoneMobileHint": "Das ist ein hint und kann in den /local/de-CH.js konfiguriert werden",
   "formBirthdateHint": "Das ist ein hint und kann in den /local/de-CH.js konfiguriert werden",
   "formEmail2Hint": "Das ist ein hint und kann in den /local/de-CH.js konfiguriert werden",
@@ -105,7 +105,7 @@ window.kursausschreibung.locale["de-CH"] = {
   "person": "Person",
   "confirmDeletion": "Möchten Sie die letzte Person wirklich entfernen?",
   "noSeatsAvailable": "Es sind nicht genügend freie Plätze verfügbar.",
-  "fileTypeDA": "ZIP-Datei hochladen", 
+  "fileTypeDA": "ZIP-Datei hochladen",
   "fileTypePD": "PDF-Datei hochladen",
   "fileTypePF": "Bilddatei hochladen",
   "fileTypePFInfo": "Sie können das Bild im Rahmen zentrieren und zoomen. Anschliessend klicken Sie auf ",

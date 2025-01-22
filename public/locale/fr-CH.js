@@ -56,7 +56,7 @@ window.kursausschreibung.locale["fr-CH"] = {
     "sortSubscriptionTo" : "Trier par ordre croissant de date de clôture des inscriptions",
     "sortBuildingAddress" : "Trier par lieu",
     "searchNoEvents" : "Aucun cours n'a été trouvé avec le filtre",
-    
+
     // properties of an event
     "subscriptionFrom": "Début",
     "subscriptionDateTo": "Délai d'inscription",
@@ -69,10 +69,10 @@ window.kursausschreibung.locale["fr-CH"] = {
     "leadership": "Direction",
     "dateString": "Date",
     "number": "Numéro",
-    "duration": "Durée", 
+    "duration": "Durée",
     "time": "Heure",
     "weekday" : "jour de la semaine",
-    
+
     // translations for the form
     "formFormOfAddress": "Forme d'adresse",
     "formFirstName": "Prénom",
@@ -95,7 +95,7 @@ window.kursausschreibung.locale["fr-CH"] = {
     "formAddressLine1Placeholder": "Musterstrasse 99",
     "formZipPlaceholder": "3000",
     "formLocationPlaceholder": "Bern",
-    "formOptionEmpty": "-- Vide --",
+    "formOptionEmpty": "",
     "formPhoneMobileHint": "Il s'agit d'un hint et peut être configuré dans le /local/fr-CH.js",
     "formBirthdateHint": "Il s'agit d'un hint et peut être configuré dans le /local/fr-CH.js",
     "formEmail2Hint": "Il s'agit d'un hint et peut être configuré dans le /local/fr-CH.js",
@@ -105,7 +105,7 @@ window.kursausschreibung.locale["fr-CH"] = {
     "person": "Personne",
     "confirmDeletion": "Voulez-vous vraiment enlever la dernière personne ?",
     "noSeatsAvailable": "Il n'y a pas assez de places disponibles.",
-    "fileTypeDA": "Télécharger un fichier ZIP", 
+    "fileTypeDA": "Télécharger un fichier ZIP",
     "fileTypePD": "Télécharger un fichier PDF",
     "fileTypePF": "Télécharger un fichier image",
     "fileTypePFInfo": "Vous pouvez centrer et zoomer l'image dans le cadre. Cliquez ensuite sur ",

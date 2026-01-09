@@ -319,9 +319,6 @@ function prepareEvent(event) {
   // create proxy for human-readable values
   addDisplayData(event);
 
-  //settings subscriptionWithLoginURL
-  event.subscriptionWithLoginURL = settings.subscriptionWithLoginURL === null ? null : encodeURI(settings.subscriptionWithLoginURL+'/'+event.EventCategory+'/'+event.Id+'/subscribe');
-
   //event subtitle when > inside string
   let eventSubtitle = event.Designation.split(settings.eventSubtitle);
   event.Designation = eventSubtitle.length > 1  ? eventSubtitle[0] : event.Designation;
@@ -361,7 +358,7 @@ function putIntoAssocArrays(event) {
   // category (in area)
   let categoryName = event.EventCategory;
   let categoryKey = event.categoryKey = underscore(categoryName);
-  categoryKey = categoryKey.replaceAll('.','_')  
+  categoryKey = event.categoryKey = categoryKey.replaceAll('.','_'); 
 
   if (!eventsByArea.areas[areaKey].categories.hasOwnProperty(categoryKey)) {
     eventsByArea.areas[areaKey].categories[categoryKey] = {
@@ -371,6 +368,13 @@ function putIntoAssocArrays(event) {
     };
   }
   eventsByArea.areas[areaKey].categories[categoryKey].events.push(event);
+
+  //settings subscriptionWithLoginURL
+  if (settings.subscriptionWithLoginURL !== null) {
+  let loginUrl = settings.subscriptionWithLoginURL.indexOf('#') > 0 ? settings.subscriptionWithLoginURL.split('#')[0] : settings.subscriptionWithLoginURL;
+  event.subscriptionWithLoginURL = settings.subscriptionWithLoginURL === null ? null : encodeURI(loginUrl+ '#/' + areaKey + '/'+categoryKey +'/'+event.Id+'/subscribe');
+  }
+
 }
 
 /**
